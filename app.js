@@ -36,6 +36,7 @@ app.use(lessMiddleware("less", {
   // once    : true,
   preprocess: {
     path: function(pathname, req) {
+      // return pathname.replace('\/style\/css', ''); //if in windows use this
       return pathname.replace('/style/css', '');
     }
   }
