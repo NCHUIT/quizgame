@@ -1,49 +1,68 @@
 body {
   font: 22px 'Roboto', '黑體-繁', '微軟正黑體', sans-serif;
-  padding-top: 20px;
+  color: #F7FBFC;
+}
+#bg {
+  height: 100%;
+  width: 100%;
+  background: url(../../img/bg.jpg) no-repeat center center;
+  background-size: 100% 100%;
+  -webkit-filter: brightness(0.4);
+          filter: brightness(0.4);
 }
 #main {
   height: 100%;
+  position: absolute;
+  padding-top: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 #menu {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-justify-content: center;
-          justify-content: center;
   height: 10%;
-  background-color: #F4F1AE;
+  .grid {
+    width: 100%;
+  }
+  .column:nth-child(1) p {
+    text-align: center;
+  }
+  .column:nth-child(2) p {
+    text-align: right;
+  }
+  span {
+    padding: 0px 10px;
+  }
 }
 #question {
+  height: 50%;
+  p {
+    text-align: justify;
+    font-size: 22px;
+  }
+}
+.center-justified {
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
           align-items: center;
   -webkit-justify-content: center;
           justify-content: center;
-  height: 50%;
-  background-color: #90EE90;
-  p {
-    text-align: justify;
-    font-size: 24px;
-  }
 }
 #answer {
-  .grid.stackable {
+  height: 35%;
+  .grid {
+    width: 100%;
     margin: 0px;
   }
-  .column {
-    background-color: #ADD8E6;
-    &:hover {
-      background-color: #7cdfff;
+  button {
+      width: 100%;
     }
     p {
       text-align: justify;
-      font-size: 24px;
+      font-size: 22px;
       span {
         padding-left: 10px;
       }
     }
-  }
 }

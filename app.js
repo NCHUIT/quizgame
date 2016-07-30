@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(lessMiddleware("less", {
 	dest		: "../",
 	pathRoot	: path.join(__dirname, "/public/style/"),
-  // debug   : true,
+  debug   : true,
   // once    : true,
   preprocess: {
     path: function(pathname, req) {

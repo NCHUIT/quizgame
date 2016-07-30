@@ -2,25 +2,37 @@ extends layout
 block css
   link(rel='stylesheet', href='./style/css/game.css')
 block content
+  #bg
   .ui.container#main
-    #menu
-      p menu
-    #question
-      p question
-    #answer
+    .center-justified#menu
+      .ui.grid
+        .eight.wide.column
+          p
+            | 第
+            span 1
+            | 題
+        .eight.wide.column
+          p 
+    .center-justified#question
+      p 
+    .center-justified#answer
       .ui.grid.stackable
         .eight.wide.column
-          p A.
-            span 123
+          button.ui.inverted.white.button
+            p A.
+              span 
         .eight.wide.column
-          p B.
-            span 123
+          button.ui.inverted.white.button
+            p B.
+              span 
         .eight.wide.column
-          p C.
-            span 123
+          button.ui.inverted.white.button
+            p C.
+              span 
         .eight.wide.column
-          p D.
-            span 123
+          button.ui.inverted.white.button
+            p D.
+              span 
 
 block js
   script(src='./socket.io/socket.io.js')

@@ -5,13 +5,12 @@ module.exports = function(io) {
   var topic;
 
   fs.readFile('./public/data/quiz.json', 'utf8', function (err, data) {
-  	if (!err) {
-  		topic = JSON.parse(data);
-  		// console.log(topic);
-  	}
-  	else {
-  		throw err;
-  	}
+    if (!err) {
+      topic = JSON.parse(data);
+    }
+    else {
+      throw err;
+    }
   });
 
   /* GET home page. */
@@ -20,8 +19,34 @@ module.exports = function(io) {
   });
 
   io.on('connection', function(socket) {
-    socket.emit('test', topic);
+    socket.emit('setTopic', setTopic(10));
   });
+  /**
+   * 挑選數題隨機題目
+   * @param {Number} num 題數
+   * @return {json} topicData 選出的題目
+   */
+  function setTopic(num) {
+    var count = topic.length,
+        randary = [],
+        topicData = [];
+    for (var i = 0; i < count; i++) { 
+      randary[i] = i;
+    } 
+    randary.sort(function(){ return 0.5 - Math.random(); }); 
+    for (var i = 0; i < num; i++) { 
+      topicData.push(
+        {
+          'topicNum': i,
+          'title': topic[randary[i]]['title'],
+          'choice': topic[randary[i]]['choice']
+        }
+      ); 
+    } 
+    // console.log(topicData);
+    return topicData;
+  }
 
   return router;
 }
+
