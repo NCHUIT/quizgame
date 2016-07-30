@@ -1,0 +1,27 @@
+extends layout
+block css
+  link(rel='stylesheet', href='./style/css/game.css')
+block content
+  .ui.container#main
+    #menu
+      p menu
+    #question
+      p question
+    #answer
+      .ui.grid.stackable
+        .eight.wide.column
+          p A.
+            span 123
+        .eight.wide.column
+          p B.
+            span 123
+        .eight.wide.column
+          p C.
+            span 123
+        .eight.wide.column
+          p D.
+            span 123
+
+block js
+  script(src='./socket.io/socket.io.js')
+  script(src='./js/game.js')
