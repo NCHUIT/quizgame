@@ -3,34 +3,40 @@ block css
   link(rel='stylesheet', href='./style/css/game.css')
 block content
   #bg
+  .result-icon
+    i.radio.icon#correct
+    i.remove.icon#wrong
   .ui.container#main
     .center-justified#menu
       .ui.grid
-        .eight.wide.column
+        .eight.wide.column#topicNum
           p
             | 第
             span 1
             | 題
-        .eight.wide.column
+        .eight.wide.column#currentPersent
           p 
+            | 正確率
+            span
+            | %
     .center-justified#question
       p 
     .center-justified#answer
       .ui.grid.stackable
         .eight.wide.column
-          button.ui.inverted.white.button
+          button.ui.inverted.white.button(value='1')
             p A.
               span 
         .eight.wide.column
-          button.ui.inverted.white.button
+          button.ui.inverted.white.button(value='2')
             p B.
               span 
         .eight.wide.column
-          button.ui.inverted.white.button
+          button.ui.inverted.white.button(value='3')
             p C.
               span 
         .eight.wide.column
-          button.ui.inverted.white.button
+          button.ui.inverted.white.button(value='4')
             p D.
               span 
 

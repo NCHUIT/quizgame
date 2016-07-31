@@ -20,6 +20,15 @@ module.exports = function(io) {
 
   io.on('connection', function(socket) {
     socket.emit('setTopic', setTopic(10));
+    socket.on('checkAns', function(ans) {
+      var userAns = ans['ans'];
+      if (topic[ans['topicNum']]['answer'] == userAns) {
+        socket.emit('result', true);
+      }
+      else {
+        socket.emit('result', false);
+      }
+    })
   });
   /**
    * 挑選數題隨機題目
@@ -43,7 +52,6 @@ module.exports = function(io) {
         }
       ); 
     } 
-    // console.log(topicData);
     return topicData;
   }
 
