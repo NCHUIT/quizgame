@@ -1,0 +1,47 @@
+body {
+  font: 22px 'Roboto', '黑體-繁', '微軟正黑體', sans-serif;
+  color: #F7FBFC;
+}
+input {
+  font: 14px 'Roboto', '黑體-繁', '微軟正黑體', sans-serif;
+  width: 100%;
+}
+#bg {
+  height: 100%;
+  width: 100%;
+  background: url(../../img/bg.jpg) no-repeat center center;
+  background-size: 100% 100%;
+  -webkit-filter: blur(2px) brightness(0.4);
+          filter: blur(2px) brightness(0.4);
+}
+#main {
+  height: 100%;
+  position: absolute;
+  padding-top: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#myCanvas {
+  height: 300px;
+  width: 100%;
+  background-color: white;
+}
+#img {
+  display: none;
+}
+#drawpad {
+  height: 70%;
+}
+.center-justified {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.right-aligned {
+  text-align: right;
+}

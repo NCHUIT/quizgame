@@ -18,6 +18,10 @@ module.exports = function(io) {
     res.render('index');
   });
 
+  router.get('/result', function(req, res, next) {
+    res.render('result');
+  });
+
   io.on('connection', function(socket) {
     socket.emit('setTopic', setTopic(10));
     socket.on('checkAns', function(ans) {

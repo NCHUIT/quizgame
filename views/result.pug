@@ -1,0 +1,17 @@
+extends layout
+block css
+  link(rel='stylesheet', href='./style/css/result.css')
+block content
+  #bg
+  .ui.container#main
+    #drawpad
+      canvas#myCanvas
+    .right-aligned
+      button.ui.inverted.white.button#clean 清空
+      button.ui.inverted.white.button#submit 提交
+    //- .ui.fluid.input
+    //-   input(type='text', placeholder='請輸入姓名或暱稱')
+    img#img
+block js
+  script(src='./socket.io/socket.io.js')
+  script(src='./js/result.js')
