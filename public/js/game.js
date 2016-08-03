@@ -12,13 +12,17 @@ $(document).ready(function() {
     // check is in 10
     if (nowTopic < 10) {
       var ans = parseInt($(this).attr('value'));
-      socket.emit('checkAns', {'topicNum': topic[nowTopic]['topicNum'], 'ans': ans});
+      socket.emit('checkAns',
+        {
+          'topicNum': topic[nowTopic]['topicNum'],
+          'ans': ans
+        }
+      );
     }
   });
 
   socket.on('result', function(result) {
     var icon = '';
-    console.log(result);
     if (result) {
       icon = '#correct';
       numCorrect += 1;
@@ -26,7 +30,6 @@ $(document).ready(function() {
     else {
       icon = '#wrong';
     }
-    // console.log(icon);
     $(icon).show();
     $('#main').css({
       '-webkit-filter': 'blur(5px)',
@@ -41,8 +44,10 @@ $(document).ready(function() {
       nowTopic += 1;
       // check is in 10
       if(nowTopic >= 10) {
-        console.log('complete!');
         console.log('num of currect ans:' + numCorrect);
+        $('#gameStep').hide();
+        $('#resultStep span').html(numCorrect);
+        $('#resultStep').show();
       }
       else {
         postTopic();

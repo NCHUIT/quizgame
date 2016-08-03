@@ -7,39 +7,48 @@ block content
     i.radio.icon#correct
     i.remove.icon#wrong
   .ui.container#main
-    .center-justified#menu
-      .ui.grid
-        .eight.wide.column#topicNum
-          p
-            | 第
-            span 1
-            | 題
-        .eight.wide.column#currentPersent
-          p 
-            | 正確率
-            span
-            | %
-    .center-justified#question
-      p 
-    .center-justified#answer
-      .ui.grid.stackable
-        .eight.wide.column
-          button.ui.inverted.white.button(value='1')
-            p A.
-              span 
-        .eight.wide.column
-          button.ui.inverted.white.button(value='2')
-            p B.
-              span 
-        .eight.wide.column
-          button.ui.inverted.white.button(value='3')
-            p C.
-              span 
-        .eight.wide.column
-          button.ui.inverted.white.button(value='4')
-            p D.
-              span 
-
+    #gameStep
+      .center-justified#menu
+        .ui.grid
+          .eight.wide.column#topicNum
+            p
+              | 第
+              span 1
+              | 題
+          .eight.wide.column#currentPersent
+            p
+              | 正確率
+              span
+              | %
+      .center-justified#question
+        p
+      .center-justified#answer
+        .ui.grid.stackable
+          .eight.wide.column
+            button.ui.inverted.white.button(value='1')
+              p A.
+                span
+          .eight.wide.column
+            button.ui.inverted.white.button(value='2')
+              p B.
+                span
+          .eight.wide.column
+            button.ui.inverted.white.button(value='3')
+              p C.
+                span
+          .eight.wide.column
+            button.ui.inverted.white.button(value='4')
+              p D.
+                span
+    #resultStep
+      .center-justified#result
+        .ui.grid
+          .sixteen.wide.column
+            h3 總答對
+          .sixteen.wide.column
+            h1
+              span
+              small 題
 block js
   script(src='./socket.io/socket.io.js')
   script(src='./js/game.js')

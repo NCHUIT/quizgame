@@ -18,11 +18,7 @@ module.exports = function(io) {
     res.render('index');
   });
 
-  router.get('/result', function(req, res, next) {
-    res.render('result');
-  });
-
-  io.on('connection', function(socket) {
+  io.on('connect', function(socket) {
     socket.emit('setTopic', setTopic(10));
     socket.on('checkAns', function(ans) {
       var userAns = ans['ans'];
@@ -32,7 +28,10 @@ module.exports = function(io) {
       else {
         socket.emit('result', false);
       }
-    })
+    });
+    socket.on('disconnect', function() {
+      console.log('user disconnected');
+    });
   });
   /**
    * 挑選數題隨機題目
@@ -43,22 +42,21 @@ module.exports = function(io) {
     var count = topic.length,
         randary = [],
         topicData = [];
-    for (var i = 0; i < count; i++) { 
+    for (var i = 0; i < count; i++) {
       randary[i] = i;
-    } 
-    randary.sort(function(){ return 0.5 - Math.random(); }); 
-    for (var i = 0; i < num; i++) { 
+    }
+    randary.sort(function(){ return 0.5 - Math.random(); });
+    for (var i = 0; i < num; i++) {
       topicData.push(
         {
-          'topicNum': i,
+          'topicNum': randary[i],
           'title': topic[randary[i]]['title'],
           'choice': topic[randary[i]]['choice']
         }
-      ); 
-    } 
+      );
+    }
     return topicData;
   }
 
   return router;
 }
-
