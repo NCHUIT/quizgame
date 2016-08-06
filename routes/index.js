@@ -42,34 +42,51 @@ module.exports = function(io) {
             ans_3   : 0,
             ans_4   : 0
           }).save();
-          console.log('add data to db');
+          // console.log('add data to db');
         }
         if(result) {
-          quizLog.update({'topicNum': topicNum}, {'$inc': {'correct': 1}}, {upsert: true});
-          console.log('correct++');
+          quizLog.update({'topicNum': topicNum}, {'$inc': {'correct': 1}}, {upsert : true}, function(err){ if(err) console.log(err);});
         }
         switch (userAns) {
           case 1:
-            quizLog.update({'topicNum': topicNum}, { 'ans_1': 1}, {upsert: true});
-            console.log('ans_1++');
+            quizLog.update({'topicNum': topicNum}, {'$inc': {'ans_1': 1}}, {upsert : true}, function(err){ if(err) console.log(err);});
+            console.log(1);
             break;
           case 2:
-            quizLog.update({'topicNum': topicNum}, {'$inc': {'ans_2': 1}}, {upsert: true});
-            console.log('ans_2++');
+            quizLog.update({'topicNum': topicNum}, {'$inc': {'ans_2': 1}}, {upsert : true}, function(err){ if(err) console.log(err);});
+            console.log(2);
             break;
           case 3:
-            quizLog.update({'topicNum': topicNum}, {'$inc': {'ans_3': 1}}, {upsert: true});
-            console.log('ans_3++');
+            quizLog.update({'topicNum': topicNum}, {'$inc': {'ans_3': 1}}, {upsert : true}, function(err){ if(err) console.log(err);});
+            console.log(3);
             break;
           case 4:
-            quizLog.update({'topicNum': topicNum}, {'$inc': {'ans_4': 1}}, {upsert: true});
-            console.log('ans_4++');
+            quizLog.update({'topicNum': topicNum}, {'$inc': {'ans_4': 1}}, {upsert : true}, function(err){ if(err) console.log(err);});
+            console.log(4);
             break;
         }
-        console.log(data[0]);
+        // console.log(data[0]);
       })
       socket.emit('result', result);
     });
+    socket.on('getPersent', function(topicNum){
+      quizLog.find({'topicNum': topicNum}, function(err, data) {
+        var persent = 0;
+        console.log(data[0]);
+        if (data.length) {
+          var correct = data[0].correct;
+          var tot = data[0].ans_1 + data[0].ans_2 + data[0].ans_3 + data[0].ans_4;
+          persent = (correct / tot)*100;
+          if(isNaN(persent)) {
+            persent = 0;
+          }
+          else {
+            persent = persent.toFixed(2);
+          }
+        }
+        socket.emit('correctPersent', persent);
+      });
+    })
     socket.on('disconnect', function() {
       console.log('user disconnected');
     });

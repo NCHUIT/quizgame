@@ -21,6 +21,10 @@ $(document).ready(function() {
     }
   });
 
+  socket.on('correctPersent', function(persent){
+    $('#correctPersent span').html(persent);
+  });
+
   socket.on('result', function(result) {
     var icon = '';
     if (result) {
@@ -31,22 +35,16 @@ $(document).ready(function() {
       icon = '#wrong';
     }
     $(icon).show();
-    $('#main').css({
-      '-webkit-filter': 'blur(5px)',
-      'filter': 'blur(5px)'
-    });
+    $('#main').addClass('bg-blur');
     $('#answer .ui.button').addClass('disabled');
     setTimeout(function(){
-      $('#main').css({
-        '-webkit-filter': 'blur(0px)',
-        'filter': 'blur(0px)'
-      });
+      $('#main').removeClass('bg-blur');
       $('#answer .ui.button').removeClass('disabled');
       $(icon).hide();
       nowTopic += 1;
       // check is in 10
       if(nowTopic >= 10) {
-        console.log('num of currect ans:' + numCorrect);
+        console.log('num of correct ans:' + numCorrect);
         $('#gameStep').hide();
         $('#resultStep span').html(numCorrect);
         $('#resultStep').show();
@@ -64,5 +62,6 @@ $(document).ready(function() {
     for (var i = 0; i < 4; i++) {
       $('#answer .column:nth-child(' + (i+1) + ') span').html(topic[nowTopic]['choice'][i]);
     }
+    socket.emit('getPersent', topic[nowTopic]['topicNum']);
   }
 });
