@@ -35,11 +35,13 @@ $(document).ready(function() {
       '-webkit-filter': 'blur(5px)',
       'filter': 'blur(5px)'
     });
+    $('#answer .ui.button').addClass('disabled');
     setTimeout(function(){
       $('#main').css({
         '-webkit-filter': 'blur(0px)',
         'filter': 'blur(0px)'
       });
+      $('#answer .ui.button').removeClass('disabled');
       $(icon).hide();
       nowTopic += 1;
       // check is in 10
