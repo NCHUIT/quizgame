@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $('.dimmer').dimmer({
+    closable: false
+  });
   $('#submit').click(function(){
     var name = $('#inputName').val();
     var email = $('#inputEmail').val();
@@ -11,6 +14,9 @@ $(document).ready(function() {
         "department": department,
         "year": year
       });
+      $('body').off();
+      $('.dimmer').dimmer('show');
+      $('#checkBox').show();
     }
     else {
       $('.message').fadeIn(100);

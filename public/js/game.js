@@ -40,14 +40,12 @@ $(document).ready(function() {
       icon = '#wrong';
     }
 
-    $('.segment').css('z-index', 10);
-    $('.segment').dimmer('show');
+    $('.dimmer').dimmer('show');
     $(icon).show();
 
     $('#answer .ui.button').addClass('disabled');
     setTimeout(function(){
-      $('.segment').css('z-index', -1);
-      $('.segment').dimmer('hide');
+      $('.dimmer').dimmer('hide');
       $(icon).hide();
       $('#answer .ui.button').removeClass('disabled');
       nowTopic += 1;
@@ -64,7 +62,9 @@ $(document).ready(function() {
     }, 1000);
 
   });
-
+  $('.dimmer').dimmer({
+    closable: false
+  });
   function postTopic() {
     $('#topicNum span').html(nowTopic+1);
     $('#question p').html(topic[nowTopic]['title']);
