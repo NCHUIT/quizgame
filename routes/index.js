@@ -21,6 +21,9 @@ module.exports = function(io) {
   router.get('/', function(req, res, next) {
     res.render('index');
   });
+  router.get('/form', function(req, res, next) {
+    res.render('form');
+  });
 
   io.on('connect', function(socket) {
     socket.emit('setTopic', setTopic(10));

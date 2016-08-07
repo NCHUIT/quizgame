@@ -1,62 +1,21 @@
 extends layout
 block css
-  link(rel='stylesheet', href='./style/css/game.css')
   link(rel='stylesheet', href='./style/css/form.css')
 block content
   #bg
-  .ui.segment
-    .ui.dimmer
-      .content
-        .center
-          i.radio.icon#correct
-          i.remove.icon#wrong
   .ui.container#main
-
-    #gameStep
-      .center-justified#menu
-        .ui.grid
-          .eight.wide.column#topicNum
-            p
-              | 第
-              span 1
-              | 題
-          .eight.wide.column#correctPersent
-            p
-              | 正確率
-              span
-              | %
-      .center-justified#question
-        p
-      .center-justified#answer
-        .ui.grid.stackable
-          .eight.wide.column
-            .button.ghost-button(value='1')
-              p A.
-                span
-          .eight.wide.column
-            .button.ghost-button(value='2')
-              p B.
-                span
-          .eight.wide.column
-            .button.ghost-button(value='3')
-              p C.
-                span
-          .eight.wide.column
-            .button.ghost-button(value='4')
-              p D.
-                span
     #resultStep
       #result
         .ui.shape
           .sides
-            .active.side
+            .side
               .center-justified.maxhight
                 h3 總答對
                 h1
-                  span
+                  span 9
                   small 題
-                .button.ui.button.inverted#goForm 填寫迎新表單
-            .side
+                button.ui.button.inverted ok
+            .active.side
               .center-justified.maxhight
                 .ui.negative.message
                   .header 每個項目皆為必填請確認
@@ -134,6 +93,4 @@ block content
                     .button.ghost-button#submit(type='submit') 確認
 
 block js
-  script(src='./socket.io/socket.io.js')
-  script(src='./js/game.js')
   script(src='./js/form.js')

@@ -8,7 +8,7 @@ $(document).ready(function() {
     postTopic(nowTopic);
   });
 
-  $('#answer button').click(function() {
+  $('#answer .button').click(function() {
     // check is in 10
     if (nowTopic < 10) {
       var ans = parseInt($(this).attr('value'));
@@ -19,6 +19,11 @@ $(document).ready(function() {
         }
       );
     }
+  });
+
+  $('.shape').shape();
+  $('#result .button#goForm').click(function(){
+    $('.shape').shape('flip right');
   });
 
   socket.on('correctPersent', function(persent){
@@ -34,13 +39,17 @@ $(document).ready(function() {
     else {
       icon = '#wrong';
     }
+
+    $('.segment').css('z-index', 10);
+    $('.segment').dimmer('show');
     $(icon).show();
-    $('#main').addClass('bg-blur');
+
     $('#answer .ui.button').addClass('disabled');
     setTimeout(function(){
-      $('#main').removeClass('bg-blur');
-      $('#answer .ui.button').removeClass('disabled');
+      $('.segment').css('z-index', -1);
+      $('.segment').dimmer('hide');
       $(icon).hide();
+      $('#answer .ui.button').removeClass('disabled');
       nowTopic += 1;
       // check is in 10
       if(nowTopic >= 10) {

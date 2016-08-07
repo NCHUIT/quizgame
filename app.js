@@ -10,7 +10,6 @@ var lessMiddleware = require('less-middleware');
 var socket_io    = require( "socket.io" );
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 // Express
 var app = express();
@@ -47,7 +46,6 @@ app.use(lessMiddleware("less", {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
